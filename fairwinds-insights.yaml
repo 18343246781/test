@@ -1,0 +1,23 @@
+options:
+  organization: zhd
+  hostname: https://insights.fairwinds.com
+
+  # You may need to set this to 'main'
+  baseBranch: master
+
+  # These images will be scanned for vulnerabilities
+  images:
+    docker:
+      - nginx:1.18-alpine
+      - quay.io/zhd/my-app:$CI_HASH
+
+  # These manifests will be scanned for configuration issues
+  manifests:
+    yaml:
+      - ./deploy/manifests/
+      - ./main.deployment.yaml
+    helm:
+      - name: prod
+        path: ./deploy/chart
+        values:
+          foo: bar
