@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../../styles/css/element-ui.css">
+</head>
+<body>
+    <div id="app">
+        <el-form style="margin-left: 20px;margin-top: 20px" :inline="true" :model="search" class="demo-form-inline">
+            <el-form-item label="会议室名称">
+                <el-input v-model="search.valueOne" placeholder="请输入会议室名称"></el-input>
+            </el-form-item>
+            <el-form-item>
+                <el-button type="primary" @click="initList()"> <i class="fa fa-search"></i> 查询</el-button>
+            </el-form-item>
+            <el-form-item>
+                <el-button type="primary" @click="clearSearch()"> <i class="el-icon-refresh-left"></i> 重置</el-button>
+            </el-form-item>
+        </el-form>
+
+        <el-dialog  title="预约会议室" :visible.sync="dialogFormVisibleAdd">
+            <el-form :model="form" :rules="rules" ref="ruleForm" >
+                <el-form-item label="会议标题" :label-width="formLabelWidth"  prop="title">
+                    <el-input  v-model="form.title" autocomplete="off"></el-input>
+                </el-form-item>
+                <el-form-item label="预约日期" :label-width="formLabelWidth" prop="meetingDate">
+                    <el-date-picker type="date" placeholder="选择预约日期" value-format="yyyy-MM-dd" v-model="form.meetingDate" style="width: 100%;"></el-date-picker>
+                </el-form-item>
+                <el-form-item label="开始时间" :label-width="formLabelWidth"  prop="startTime">
+                    <el-time-picker placeholder="选择时间" v-model="form.startTime" value-format="HH:mm:ss" style="width: 100%;"></el-time-picker>
+                </el-form-item>
+                <el-form-item label="结束时间" :label-width="formLabelWidth"  prop="endTime">
+                    <el-time-picker placeholder="选择时间" v-model="form.endTime" value-format="HH:mm:ss"  style="width: 100%;"></el-time-picker>
+                </el-form-item>
+            </el-form>
+            <div slot="footer" class="dialog-footer">
+                <el-button @click="dialogFormVisibleAdd = false">取 消</el-button>
+                <el-button type="primary" @click="saveBtn('ruleForm')">确 定</el-button>
+            </div>
+        </el-dialog>
+
+        <el-table
+                :data="tableData"
+                border>
+            <el-table-column
+                    prop="date"
+                    label="序号">
+                <template slot-scope="scope">
+                    {{scope.$index+1}}
+                </template>
+            </el-table-column>
+            <el-table-column
+                    prop="id"
+                    label="编号">
+            </el-table-column>
+            <el-table-column
+                    prop="name"
+                    label="会议室名称">
+            </el-table-column>
+            <el-table-column
+                    prop="addr"
+                    label="会议地点">
+            </el-table-column>
+            <el-table-column
+                    prop="status"
+                    label="状态">
+                <template slot-scope="scope">
+                    <el-tag v-if="scope.row.status==='空闲'" type="success">空闲</el-tag>
+                    <el-tag v-if="scope.row.status==='占用'" type="danger">占用</el-tag>
+                </template>
+            </el-table-column>
+            <el-table-column
+                    fixed="right"
+                    label="操作"
+                    width="150">
+                <template slot-scope="scope">
+                    <el-button
+                            size="mini"
+                            type="danger"
+                            @click="handleEdit(scope.row.id)">预约</el-button>
+                </template>
+            </el-table-column>
+        </el-table>
+
+        <el-pagination
+                @size-change="handleSizeChange"
+                @current-change="handleCurrentChange"
+                :current-page="search.pageNumber"
+                :page-sizes="[5,10]"
+                :page-size="search.pageCount"
+                layout="total, sizes, prev, pager, next, jumper"
+                :total="total">
+        </el-pagination>
+    </div>
+</body>
+</html>
+<link rel="stylesheet" href="../../styles/css/font-awesome.min.css">
+<script src="../../styles/js/vue.js"></script>
+<script src="../../styles/js/element.js"></script>
+<script src="../../styles/js/axios.js"></script>
+<script src="../../styles/js/httpRequest.js"></script>
+<script>
+    new Vue({
+        el:"#app",
+        data:function (){
+            return{
+                form:{},
+                controller:'meeting',
+                tableData:[],
+                search:{
+                    pageNumber:1,
+                    pageCount:5
+                },
+                total:0,
+                dialogFormVisible:false,
+                dialogFormVisibleAdd:false,
+                formLabelWidth:'120px',
+                multipleSelection: [],
+                roleList: [],
+                tableDataPro:[],
+                ruleForm: {},
+                rules: {
+                    meetingDate: [
+                        { required: true, message: '请输入会议开始日期', trigger: 'blur' },
+                    ],
+                    startTime: [
+                        { required: true, message: '请输入会议开始时间', trigger: 'blur' },
+                    ],
+                    endTime: [
+                        { required: true, message: '请输入会议结束时间', trigger: 'blur' },
+                    ],
+                    title: [
+                        { required: true, message: '请输入会议标题', trigger: 'blur' },
+                    ],
+                },
+                flag:true,
+            }
+        },
+        methods:{
+            //列表查询
+            initList(){
+                axiosPostRequest(`/${this.controller}/findPage`,this.search).then(res=>{
+                    this.tableData=res.records
+                    this.total=res.total
+                })
+            },
+            handleSizeChange(val) {
+                this.search.pageCount=val;
+                this.initList();
+            },
+            handleCurrentChange(val) {
+                this.search.pageNumber=val;
+                this.initList();
+            },
+            //编辑
+            handleEdit(id){
+                this.flag=false;
+                this.form.mid=id
+                this.dialogFormVisibleAdd=true;
+            },
+            //删除
+            handleDelete(id){
+                this.$confirm('此操作将永久删除该会议室, 是否继续?', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning'
+                }).then(() => {
+                   axiosGetRequest(`/${this.controller}/deleteById/${id}`).then(res=>{
+                       if (res.code===20000){
+                           this.$message.success(res.message)
+                           this.initList();
+                       }else {
+                           this.$message.error(res.message)
+                       }
+                   })
+                }).catch(() => {
+                    this.$message({
+                        type: 'info',
+                        message: '已取消删除'
+                    });
+                });
+            },
+            //跳转到添加页
+            oppenAddDialog(){
+                this.flag=true;
+                this.form={};
+                this.dialogFormVisibleAdd=true;
+            },
+            //新增或修改
+            saveBtn(formName){
+                this.$refs[formName].validate((valid) => {
+                    if (valid) {
+
+                        axiosPostRequest(`/meeting-make/save`,this.form).then(res=>{
+                            if (res.code===20000){
+                                this.dialogFormVisibleAdd=false;
+                                this.$message.success(res.message)
+                                this.initList();
+                            }else {
+                                this.$message.error(res.message)
+                            }
+                        })
+
+                    } else {
+                        return false;
+                    }
+                });
+            },
+            handleSelectionChange(val) {
+                this.multipleSelection = val;
+            },
+            //重置查询框
+            clearSearch(){
+                this.search={
+                    pageNumber:1,
+                    pageCount:5
+                }
+                this.initList();
+            }
+        },
+        created(){
+            this.initList();
+        }
+    })
+</script>

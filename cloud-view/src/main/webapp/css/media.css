@@ -1,0 +1,758 @@
+@media screen and (min-width: 1200px) {
+    .index-driver .driver-box .index-driver-swiper .swiper-slide:hover {
+        background-color: #3186E0;
+    }
+    .index-driver .driver-box .index-driver-swiper .swiper-slide:hover .name,
+    .index-driver .driver-box .index-driver-swiper .swiper-slide:hover .position {
+        color: #fff;
+    }
+    .index-show .wd1200 .show-contain .show-box .info .photo img:hover {
+        transform: scale(1.1);
+    }
+}
+@media screen and (max-width: 1400px) {
+    .index-driver-swiper .swiper-button-next,
+    .index-driver-swiper .swiper-button-prev {
+        display: none;
+    }
+}
+@media screen and (max-width: 1200px) {
+    #go-top {
+        display: none !important;
+    }
+    .index-header {
+        height: auto;
+    }
+    header .index-head .wd1200 .nav li {
+        padding: 0 15px;
+    }
+    .index-show .wd1200 .show-contain .show-box .picture {
+        width: 400px;
+    }
+    .index-show .wd1200 .show-contain .show-box .info {
+        padding: 20px;
+    }
+    .index-reason .reason-contain .wd1200 .promise {
+        display: none;
+    }
+    .index-reason .reason-contain .wd1200 .reason-box {
+        width: 80%;
+        margin: auto;
+    }
+    .index-reason .reason-contain .wd1200 .reason-box .index-reason-swiper .swiper-slide {
+        padding: 20px;
+    }
+    .index-case .case-box .gallery-top .swiper-slide {
+        background-size: cover;
+        background-position: center;
+    }
+    .index-case .case-box .gallery-top {
+        height: 690px;
+    }
+    .index-about .about-box .wd1200 .show {
+        width: 370px;
+        object-fit: cover;
+        margin-right: 25px;
+    }
+    .index-about-swiper .swiper-button-prev,
+    .index-about-swiper .swiper-button-next {
+        display: none;
+    }
+    .index-about .new-box .wd1200 .new .new-main {
+        padding: 20px;
+    }
+    .index-about .new-box .wd1200 .new .new-main .flac {
+        margin-right: 20px;
+    }
+    .index-about .new-box .wd1200 .new .new-main .list .list-item span {
+        min-width: 89px;
+    }
+    .index-about .new-box .wd1200 .issue .issue-box {
+        padding: 20px 15px;
+    }
+    .index-about .new-box .wd1200 .new .new-main .flac {
+        width: auto;
+    }
+    .index-about .new-box .wd1200 .new .new-main .flac .img {
+        height: auto;
+    }
+    .index-case .case-box .gallery-thumbs .swiper-slide {
+        background-size: cover;
+        background-position: center;
+    }
+}
+@media screen and (max-width: 1024px) {
+    .index-about .new-box .wd1200 {
+        display: block;
+    }
+    .index-about .new-box .wd1200 .issue {
+        display: none;
+    }
+}
+@media screen and (max-width: 980px) {
+    .index-about .about-box .wd1200 {
+        display: block;
+    }
+    .index-about .about-box .wd1200 .show {
+        width: 100%;
+        height: auto;
+        margin-right: 0;
+    }
+    .index-about .about-box .wd1200 .info .title {
+        margin-top: 20px;
+    }
+}
+@media screen and (max-width: 960px) {
+    .m-header {
+        display: block;
+    }
+    header .index-head .wd1200 .nav {
+        display: none;
+    }
+    header .index-head {
+        line-height: 60px;
+    }
+    header .index-head .wd1200 .logo img {
+        height: 40px;
+    }
+    .index-search .wd1200 .search-box {
+        width: 340px;
+    }
+    .index-show .wd1200 .show-contain .show-box {
+        display: block;
+    }
+    .index-show .wd1200 .show-contain .show-box .picture {
+        width: 100%;
+        height: auto;
+    }
+    .index-show .wd1200 .show-contain .show-box .info .photo {
+        justify-content: space-around;
+    }
+    .index-show .wd1200 .show-nav ul {
+        justify-content: flex-start;
+        white-space: nowrap;
+        overflow-y: hidden;
+        overflow-x: scroll;
+    }
+    .index-show .wd1200 .show-nav ul li a {
+        width: auto;
+        padding: 0 20px;
+    }
+    .index-reason .reason-nav ul li .icon {
+        width: 40px;
+        height: auto;
+    }
+    .index-reason .reason-nav ul li .word .title {
+        font-size: 22px;
+    }
+    .index-reason .reason-nav ul li .word .intro {
+        font-size: 16px;
+        margin-top: 0;
+    }
+    .index-reason .reason-nav ul li {
+        height: 95px;
+    }
+    .index-case .case-box .gallery-top {
+        height: 540px;
+    }
+    .index-reason .reason-nav ul li::after {
+        height: 30px;
+    }
+}
+@media screen and (max-width: 768px) {
+    .index-search .wd1200 .key {
+        display: none;
+    }
+    .index-search {
+        height: auto;
+        line-height: normal;
+        padding: 20px 0;
+    }
+    .index-search .wd1200 .search-box {
+        width: 100%;
+    }
+    header .index-head {
+        position: initial;
+        border: none;
+    }
+    .index-show,
+    .index-reason,
+    .index-about,
+    .index-case {
+        padding: 30px 0;
+    }
+    .index-Title .title {
+        font-size: 30px;
+    }
+    .index-show .wd1200 .show-contain,
+    .index-about .about-box,
+    .index-case .case-box,
+    .index-driver .driver-box {
+        margin-top: 30px;
+    }
+    .index-show .wd1200 .show-contain .show-box .info {
+        height: auto;
+        padding: 20px 15px;
+    }
+    .index-show .wd1200 .show-contain .show-box .info .intro {
+        margin-top: 15px;
+    }
+    .index-show .wd1200 .show-contain .show-box .info .photo {
+        margin-top: 15px;
+        justify-content: space-between;
+    }
+    .index-show .wd1200 .show-contain .show-box .info .photo img {
+        width: 31%;
+        height: auto;
+    }
+    .index-show .wd1200 .show-contain .show-box .info .bot {
+        margin-top: 15px;
+    }
+    .index-show .wd1200 .show-contain .show-car .car-item .info div strong {
+        font-size: 24px;
+    }
+    .index-reason .reason-contain .wd1200 .reason-box .index-reason-swiper .swiper-slide h2 {
+        font-size: 22px;
+    }
+    .index-reason .reason-contain .wd1200 .reason-box .index-reason-swiper .swiper-slide .intro {
+        font-size: 18px;
+    }
+    .index-reason .reason-contain .wd1200 .reason-box .index-reason-swiper .swiper-slide .detail {
+        line-height: 26px;
+    }
+    .index-reason .reason-contain .wd1200 .reason-box {
+        height: auto;
+    }
+    .index-reason .reason-contain {
+        height: auto;
+        padding: 50px 0;
+    }
+    .index-reason .reason-nav ul li>img {
+        display: none !important;
+    }
+    .index-driver {
+        padding: 30px 0 50px;
+    }
+    .index-driver-swiper .swiper-pagination-bullets {
+        bottom: -30px;
+    }
+    .index-case .case-box .gallery-top .swiper-slide .title {
+        height: auto;
+        line-height: 80px;
+    }
+    .gallery-top .swiper-pagination-bullets {
+        bottom: 30px;
+    }
+    .index-about .about-box .wd1200 .info .index-about-swiper {
+        width: 100%;
+    }
+    .index-reason .reason-nav {
+        margin-top: 30px;
+        padding: 0;
+    }
+    .contact-contain .wd1200 .map #dituContent iframe{height:300px;}
+}
+@media screen and (max-width: 640px) {
+    .index-about .new-box .wd1200 .new .new-main {
+        display: block;
+    }
+    .index-about .new-box .wd1200 .new .new-main .list .list-item div {
+        width: auto;
+    }
+    .index-search {
+        height: auto;
+        padding: 10px 0;
+    }
+    .index-search .wd1200 .search-box .input {
+        height: 40px;
+    }
+    .index-search .wd1200 .search-box .button button {
+        height: 40px;
+        line-height: 40px;
+    }
+    .index-Title .line {
+        width: 150px;
+        margin: 15px auto 0;
+    }
+    .index-Title .title {
+        font-size: 24px;
+    }
+    .index-Title .intro {
+        margin-top: 15px;
+    }
+    .index-show .wd1200 .show-nav {
+        margin-top: 30px;
+    }
+    .index-show .wd1200 .show-nav ul li a {
+        height: 40px;
+        line-height: 40px;
+    }
+    .index-show .wd1200 .show-nav ul .li-active a {
+        line-height: 40px;
+    }
+    .index-show .wd1200 .show-nav ul li {
+        margin: 0 5px;
+    }
+    .index-show .wd1200 .show-contain .show-box .info .intro {
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+    .index-show .wd1200 .show-contain .show-box .info .bot .detail {
+        width: 110px;
+        height: 40px;
+        line-height: 40px;
+    }
+    .index-show .wd1200 .show-contain .show-box .info .bot div strong {
+        font-size: 30px;
+    }
+    .index-show .wd1200 .show-contain .show-car .car-item {
+        width: 49%;
+    }
+    .index-show .wd1200 .show-contain .show-car .car-item:last-child {
+        display: none;
+    }
+    .index-show .wd1200 .show-contain .show-car .car-item .info span {
+        font-size: 15px;
+    }
+    .index-show .wd1200 .show-contain .show-car .car-item .info {
+        display: block;
+        padding: 15px;
+        height: auto;
+    }
+    .index-reason .reason-nav ul li {
+        text-align: center;
+    }
+    .index-reason .reason-nav ul li .sanjiao {
+        display: none !important;
+    }
+    .index-reason .reason-nav ul li .word .title {
+        font-size: 16px;
+    }
+    .index-reason .reason-nav ul li .word .intro {
+        font-size: 14px;
+    }
+    .index-reason .reason-contain .wd1200 .reason-box .index-reason-swiper .swiper-slide h2 {
+        font-size: 20px;
+    }
+    .index-reason .reason-contain .wd1200 .reason-box {
+        width: 100%;
+    }
+    .index-case {
+        padding-top: 10px;
+    }
+    .index-driver .driver-box .index-driver-swiper .swiper-slide .photo {
+        width: 100px;
+        height: auto;
+    }
+    .index-driver .driver-box .index-driver-swiper {
+        height: auto;
+    }
+    .index-driver .driver-box .index-driver-swiper .swiper-slide {
+        padding: 20px 10px;
+    }
+    .index-driver .driver-box .index-driver-swiper .swiper-slide .position p {
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+    .index-driver .driver-box .index-driver-swiper .swiper-slide .name {
+        margin-top: 15px;
+    }
+    .index-about .new-box .wd1200 .new .new-main .flac .flac-box .intro {
+        line-height: 26px;
+        font-size: 15px;
+    }
+    .index-about .new-box .wd1200 .new .new-main .list .list-item span {
+        display: none;
+    }
+    .index-about .new-box .wd1200 .new .new-main .list .list-item {
+        margin-bottom: 20px;
+    }
+    header .index-banner-swiper {
+
+    }
+}
+@media screen and (max-width: 480px) {
+    .index-case .case-box .gallery-top {
+        height: 230px;
+    }
+    .gallery-top .swiper-button-next,
+    .gallery-top .swiper-button-prev {
+        width: 30px;
+        height: 30px;
+        background-size: 100% 100%;
+    }
+    .index-case .case-box .gallery-top .swiper-slide .title {
+        line-height: 50px;
+        font-size: 16px;
+        padding-left: 15px;
+    }
+    .index-case .case-box .gallery-top .swiper-slide .title span::after,
+    .gallery-top .swiper-pagination-bullets {
+        display: none;
+    }
+    .index-case .case-box .gallery-thumbs {
+        height: 113px;
+    }
+}
+@media screen and (min-width: 1200px) {
+    .new-contain .wd1200 .flac-box .lump .l-box .l-item:hover span {
+        color: #3186E0;
+    }
+    .show-article .wd1200 .show-box .info .photo img:hover {
+        transform: scale(1.1);
+    }
+    .new-contain .wd1200 .new-article .down a:hover {
+        background-color: #3186E0;
+        border: 1px solid #3186E0;
+    }
+    .new-contain .wd1200 .new-article .down a:hover .icon1 {
+        display: none;
+    }
+    .new-contain .wd1200 .new-article .down a:hover .icon2 {
+        display: block;
+    }
+    .new-contain .wd1200 .new-article .down a:hover span {
+        color: #fff;
+    }
+}
+@media screen and (max-width: 1200px) {
+    footer .foot-nav .wd1200 ul {
+        width: auto;
+        max-width: 1200px;
+        position: initial;
+        transform: none;
+    }
+    footer .foot-nav {
+        height: auto;
+        padding: 20px 0;
+    }
+    footer .foot-nav .wd1200 .foot-link {
+        margin-top: 15px;
+    }
+    footer .foot-nav .wd1200 ul li::after {
+        display: none;
+    }
+    .show-article .wd1200 .show-box .info {
+        padding: 20px;
+    }
+    .show-article .wd1200 .show-box .picture {
+        width: 400px;
+    }
+    .show-article .wd1200 .show-box .picture img,
+    .new-contain .wd1200 .flac-box {
+        width: auto;
+    }
+    .new-contain .wd1200 .new-box {
+        width: 550px;
+    }
+    .new-contain .wd1200 .new-article .down {
+        display: block;
+    }
+    .new-contain .wd1200 .new-article .down a {
+        margin-bottom: 10px;
+        width: 100%;
+    }
+    .contact-contain .wd1200 .map {
+        flex: 1;
+    }
+    .contact-contain .wd1200 .map #dituContent {
+        width: auto;
+    }
+    .contact-contain .wd1200 .contact-box {
+        flex: initial;
+    }
+    .leave-contain .wd1200 .leave-box .l-small .l-item .input {
+        width: 360px;
+    }
+}
+@media screen and (max-width: 1024px) {
+    footer .foot-main .wd1200 .foot-logo {
+        display: none;
+    }
+    footer .foot-main .wd1200 .middle {
+        padding-left: 0;
+    }
+}
+@media screen and (max-width: 960px) {
+    .about-contain .wd1200 .show-photo {
+        width: 400px;
+    }
+    .show-article .wd1200 .show-detail {
+        display: block;
+    }
+    .show-article .wd1200 .show-detail .detail-hot {
+        display: none;
+    }
+    .show-article {
+        padding: 30px 0;
+    }
+    .show-article .wd1200 .show-box {
+        display: block;
+    }
+    .show-article .wd1200 .show-box .picture {
+        width: 100%;
+        height: auto;
+    }
+    .show-article .wd1200 .show-box .picture img {
+        width: 100%; height:auto !important
+    }
+    .show-article .wd1200 .show-box .info {
+        height: auto;
+    }
+    .show-article .wd1200 .show-box .info .photo {
+        margin: 15px 0 20px;
+    }
+    .show-article .wd1200 .show-box .info .photo img {
+        width: 32%;
+        height: auto;
+    }
+    .new-contain .wd1200 {
+        display: block;
+    }
+    .new-contain .wd1200 .new-box {
+        width: 100%;
+    }
+    .new-contain .wd1200 .flac-box {
+        margin-left: 0;
+        margin-top: 25px;
+    }
+    .new-contain {
+        padding: 30px 0;
+    }
+    .contact-contain .wd1200 {
+        flex-direction: column-reverse;
+    }
+    .contact-contain .wd1200 .map {
+        margin-right: 0;
+    }
+    .contact-contain .wd1200 .contact-box {
+        margin-bottom: 25px;
+        padding: 20px 15px;
+    }
+    .contact-contain .wd1200 .contact-box .ma {
+        text-align: left;
+    }
+    .contact-contain {
+        padding: 30px 0;
+    }
+    .contact-contain .wd1200 .map #dituContent {
+        height: 400px;
+    }
+    .leave-contain {
+        padding: 30px 0;
+    }
+    .leave-contain .wd1200 .leave-box {
+        margin-top: 30px;
+    }
+    .leave-contain .wd1200 .leave-box .l-small {
+        display: block;
+    }
+    .leave-contain .wd1200 .leave-box .l-small .l-item {
+        margin-bottom: 20px;
+    }
+    .leave-contain .wd1200 .leave-box .l-small {
+        margin-bottom: 0;
+    }
+    .leave-contain .wd1200 .leave-box .l-small .l-item .input {
+        width: auto;
+        flex: 1;
+    }
+}
+@media screen and (max-width: 768px) {
+    footer .foot-nav {
+        display: none;
+    }
+    footer .banquan .wd1200 span {
+        display: none;
+    }
+    footer .banquan {
+        height: auto;
+        line-height: normal;
+        padding: 15px 0;
+        text-align: center;
+    }
+    footer .banquan .wd1200 {
+        display: block;
+    }
+    .nei-header {
+        height: auto;
+    }
+    .nei-header .index-head .wd1200 .logo .icon1 {
+        display: none;
+    }
+    .nei-header .index-head .wd1200 .logo .icon2 {
+        display: inline;
+    }
+    .about-contain .wd1200 {
+        flex-direction: column-reverse;
+    }
+    .about-contain .wd1200 .show-word {
+        height: auto;
+        padding-right: 0;
+        margin-top: 20px;
+    }
+    .about-contain .wd1200 .show-photo {
+        width: 100%;
+        margin-left: 0;
+        height: auto;
+    }
+    .about-contain {
+        padding: 30px 0;
+    }
+}
+@media screen and (max-width: 640px) {
+    header .n-banner {
+        height: 250px;
+    }
+    footer .foot-main .wd1200 {
+        display: block;
+    }
+    footer .foot-main .wd1200 .leave {
+        padding-left: 0;
+        margin-top: 20px;
+    }
+    footer .foot-main .wd1200 .middle {
+        border: none;
+    }
+    footer .foot-main .wd1200 .leave .input {
+        width: 100%;
+    }
+    .about-contain .wd1200 .show-word {
+        line-height: 28px;
+    }
+    .show-show .wd1200 .show-contain .show-car .car-item:nth-of-type(3n) {
+        margin-right: 2%;
+    }
+    .show-show .wd1200 .show-contain .show-car .car-item:nth-of-type(2n) {
+        margin-right: 0;
+    }
+    .index-show .wd1200 .show-contain .show-car .car-item .info {
+        background-color: #e8e8e8;
+    }
+    .show-show .wd1200 .show-nav {
+        margin-top: 0;
+    }
+    #page {
+        display: block;
+    }
+    #page .next {
+        width: 100%;
+        height: 40px;
+    }
+    #page ul {
+        margin: 10px 0;
+    }
+    #page ul li a {
+        height: 40px;
+        width: 40px;
+        line-height: 40px;
+    }
+    .show-article .wd1200 .show-box .info .top .name {
+        font-size: 22px;
+    }
+    .show-article .wd1200 .show-box .info .top .price strong {
+        font-size: 24px;
+    }
+    .show-article .wd1200 .show-box .info {
+        padding: 20px 15px;
+    }
+    .show-article .wd1200 .show-box .info .intro {
+        margin-top: 15px;
+    }
+    .show-article .wd1200 .show-box .info .bot .detail {
+        width: 110px;
+        height: 40px;
+        line-height: 40px;
+    }
+    .show-article .wd1200 .show-detail {
+        margin-top: 30px;
+    }
+    .show-article .wd1200 .show-detail .detail-body {
+        padding: 20px 15px;
+    }
+    .show-article .wd1200 .show-detail .detail-body .body {
+        padding-top: 20px;
+    }
+    .show-article .wd1200 .show-detail .detail-body .body {
+        line-height: 28px;
+        font-size: 15px;
+    }
+    .new-contain .wd1200 .new-box .news-item .time {
+        display: none;
+    }
+    .new-contain .wd1200 .new-box .news-item .ingo .title {
+        font-size: 18px;
+    }
+    .new-contain .wd1200 .new-box .news-item .ingo .intro {
+        font-size: 15px;
+        line-height: 26px;
+    }
+    .new-contain .wd1200 .new-box .news-item .ingo .more {
+        margin-top: 20px;
+    }
+    .new-contain .wd1200 .new-box .news-item {
+        padding: 20px 0;
+    }
+    .new-contain .wd1200 .flac-box .lump {
+        padding: 20px 15px;
+    }
+    .new-contain .wd1200 .flac-box .lump .l-box .l-item span {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    .new-contain .wd1200 .new-article .down a .icon {
+        display: none;
+    }
+    .new-contain .wd1200 .new-article .title {
+        font-size: 18px;
+    }
+    .new-contain .wd1200 .new-article .body {
+        padding: 25px 0 20px;
+    }
+    .contact-contain .wd1200 .map #dituContent {
+        height: 300px;
+    }
+    .contact-contain .wd1200 .contact-box .ma {
+        margin-top: 20px;
+        text-align: center;
+    }
+    .leave-contain .wd1200 .title {
+        font-size: 18px;
+        font-weight: 500;
+    }
+    .leave-contain .wd1200 .leave-box .l-small .l-item .input {
+        height: 50px;
+    }
+    .leave-contain .wd1200 .leave-box .l-small .l-item .input input,
+    .leave-contain .wd1200 .leave-box .l-big .text textarea {
+        font-size: 14px;
+    }
+    .leave-contain .wd1200 .leave-box .l-small .l-item span {
+        margin-right: 15px;
+    }
+    .leave-contain .wd1200 .leave-box .l-big .text {
+        padding: 15px 15px 15px 0;
+        height: 120px;
+    }
+    .leave-contain .wd1200 .leave-box .l-send button {
+        margin-left: 0;
+        width: 45%;
+        height: 50px;
+        line-height: 50px;
+    }
+    .leave-contain .wd1200 .leave-box .l-send {
+        justify-content: space-between;
+    }
+    .new-contain .wd1200 .new-article .down a {
+        height: auto;
+        line-height: 24px;
+        padding: 10px 10px 0;
+        justify-content: flex-start;
+        border: none;
+    }
+}

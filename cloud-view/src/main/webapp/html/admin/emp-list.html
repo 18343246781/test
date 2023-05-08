@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../../styles/css/element-ui.css">
+</head>
+<body>
+    <div id="app">
+        <el-form style="margin-left: 20px;margin-top: 20px" :inline="true" :model="search" class="demo-form-inline">
+            <el-form-item label="姓名">
+                <el-input v-model="search.valueOne" placeholder="请输入人员姓名"></el-input>
+            </el-form-item>
+            <el-form-item label="籍贯">
+                <el-input v-model="search.valueTwo" placeholder="请输入籍贯"></el-input>
+            </el-form-item>
+            <el-form-item label="学历">
+                <el-input v-model="search.valueThree" placeholder="请输入学历"></el-input>
+            </el-form-item>
+            <el-form-item label="民族">
+                <el-input v-model="search.valueFour" placeholder="请输入民族"></el-input>
+            </el-form-item>
+            <el-form-item>
+                <el-button type="primary" @click="initList()"> <i class="fa fa-search"></i> 查询</el-button>
+            </el-form-item>
+            <el-form-item>
+                <el-button type="primary" @click="clearSearch()"> <i class="el-icon-refresh-left"></i> 重置</el-button>
+            </el-form-item>
+            <el-button type="success"  @click="oppenAddDialog()"> <i class="el-icon-plus"></i> 新增</el-button>
+        </el-form>
+
+        <el-dialog  title="新增用户" :visible.sync="dialogFormVisibleAdd" width="70%" height="80%">
+            <el-form :model="form" :rules="rules" ref="ruleForm" >
+                 <el-form-item class="left" label="部门" :label-width="formLabelWidth" prop="deptIdList">
+                     <el-cascader :options="deptList" v-model="form.deptIdList"></el-cascader>
+                 </el-form-item>
+                 <el-form-item class="right" label="工资类型" :label-width="formLabelWidth" prop="sid">
+                     <el-select v-model="form.sid"  placeholder="请选择工资类型">
+                         <el-option v-for="v in salaryList" :label="v.cateName" :value="v.id"></el-option>
+                     </el-select>
+                 </el-form-item>
+
+                <el-form-item class="left" label="姓名" :label-width="formLabelWidth"  prop="name">
+                    <el-input  v-model="form.name" autocomplete="off" class="el"></el-input>
+                </el-form-item>
+                <el-form-item class="right sex" label="性别" :label-width="formLabelWidth">
+                    <el-radio-group v-model="form.sex">
+                        <el-radio label="男"></el-radio>
+                        <el-radio label="女"></el-radio>
+                    </el-radio-group>
+                </el-form-item>
+                <el-form-item  class="left" label="年龄" :label-width="formLabelWidth"  prop="age">
+                    <el-input-number  v-model="form.age" autocomplete="off" stype="width:200px"></el-input-number>
+                </el-form-item>
+                <el-form-item class="right" label="生日" :label-width="formLabelWidth" prop="birthday">
+                    <el-col :span="20">
+                        <el-date-picker type="date"  value-formart="yyyy-MM-dd" placeholder="选择日期" v-model="form.birthday"  style="width: 100%;"></el-date-picker>
+                    </el-col>
+                </el-form-item>
+                <el-form-item  class="left" label="婚姻" :label-width="formLabelWidth">
+                    <el-radio-group v-model="form.marriage">
+                        <el-radio label="是"></el-radio>
+                        <el-radio label="否"></el-radio>
+                    </el-radio-group>
+                </el-form-item>
+                <el-form-item  class="right" label="籍贯" :label-width="formLabelWidth" >
+                    <el-input  v-model="form.natives" autocomplete="off" class="el"></el-input>
+                </el-form-item>
+                <el-form-item   class="left" label="身高(cm)" :label-width="formLabelWidth" >
+                    <el-input-number  v-model="form.cm" autocomplete="off"></el-input-number>
+                </el-form-item>
+                <el-form-item  class="right" label="民族" :label-width="formLabelWidth" >
+                    <el-input  v-model="form.nation" autocomplete="off" class="el"></el-input>
+                </el-form-item>
+                <el-form-item   class="left" label="体重(kg)" :label-width="formLabelWidth" >
+                    <el-input-number  v-model="form.kg" autocomplete="off"></el-input-number>
+                </el-form-item>
+                <el-form-item   class="right" label="学历" :label-width="formLabelWidth">
+                    <el-select v-model="form.education" placeholder="请选择学历">
+                        <el-option label="小学" value="小学"></el-option>
+                        <el-option label="初中" value="初中"></el-option>
+                        <el-option label="高中" value="高中"></el-option>
+                        <el-option label="中专" value="中专"></el-option>
+                        <el-option label="专科" value="专科"></el-option>
+                        <el-option label="本科" value="本科"></el-option>
+                        <el-option label="硕士" value="硕士"></el-option>
+                        <el-option label="博士" value="博士"></el-option>
+                    </el-select>
+                </el-form-item>
+                <el-form-item  class="left" label="政治面貌" :label-width="formLabelWidth">
+                    <el-select v-model="form.face" placeholder="请选择政治面貌">
+                        <el-option label="党员" value="党员"></el-option>
+                        <el-option label="团员" value="团员"></el-option>
+                        <el-option label="群众" value="群众"></el-option>
+                    </el-select>
+                </el-form-item>
+                <el-form-item  class="right right-input" label="健康状态" :label-width="formLabelWidth">
+                    <el-radio-group v-model="form.healthy">
+                        <el-radio label="健康"></el-radio>
+                        <el-radio label="康复中"></el-radio>
+                    </el-radio-group>
+                </el-form-item>
+                <el-form-item  class="left" label="身份证" :label-width="formLabelWidth"  prop="idCard">
+                    <el-input  v-model="form.idCard" autocomplete="off" class="el"></el-input>
+                </el-form-item>
+                <el-form-item  class="right" label="邮编" :label-width="formLabelWidth" >
+                    <el-input  v-model="form.postalCode" autocomplete="off" class="el"></el-input>
+                </el-form-item>
+                <el-form-item class="left"  label="电话" :label-width="formLabelWidth" prop="tel">
+                    <el-input  v-model="form.tel" autocomplete="off" class="el"></el-input>
+                </el-form-item>
+                <el-form-item  class="right right-input" label="保险" :label-width="formLabelWidth">
+                    <el-radio-group v-model="form.insure">
+                        <el-radio label="缴纳"></el-radio>
+                        <el-radio label="未缴纳"></el-radio>
+                    </el-radio-group>
+                </el-form-item>
+                <el-form-item class="left" label="级别" :label-width="formLabelWidth">
+                    <el-radio-group v-model="form.level">
+                        <el-radio label="初级"></el-radio>
+                        <el-radio label="中级"></el-radio>
+                        <el-radio label="高级"></el-radio>
+                    </el-radio-group>
+                </el-form-item>
+                <el-form-item  class="right" label="报到日期" :label-width="formLabelWidth">
+                    <el-col :span="20">
+                        <el-date-picker type="date" value-formart="yyyy-MM-dd" placeholder="选择日期" v-model="form.checkDate"  style="width: 100%;"></el-date-picker>
+                    </el-col>
+                </el-form-item>
+                <el-form-item  class="left" label="在职状态" :label-width="formLabelWidth">
+                    <el-radio-group v-model="form.jobStatus">
+                        <el-radio label="在职"></el-radio>
+                        <el-radio label="离职"></el-radio>
+                    </el-radio-group>
+                </el-form-item>
+                <el-form-item  class="right rightmv" label="转正日期" :label-width="formLabelWidth" prop="becomeDate">
+                    <el-col :span="20">
+                        <el-date-picker type="date" value-formart="yyyy-MM-dd" placeholder="选择日期" v-model="form.becomeDate"  style="width: 100%;"></el-date-picker>
+                    </el-col>
+                </el-form-item>
+                <el-form-item class="left" label="试用期工资" :label-width="formLabelWidth" prop="trialSalary">
+                    <el-input-number  v-model="form.trialSalary" autocomplete="off"></el-input-number>
+                </el-form-item>
+                <el-form-item  class="right" label="转正后工资" :label-width="formLabelWidth" prop="becomeSalaty">
+                    <el-input-number  v-model="form.becomeSalaty" autocomplete="off"></el-input-number>
+                </el-form-item>
+                <el-form-item class="left" label="银行卡号" :label-width="formLabelWidth" >
+                    <el-input  v-model="form.bankNum" autocomplete="off" class="el"></el-input>
+                </el-form-item>
+                <el-form-item  class="right" label="试用类型" :label-width="formLabelWidth" >
+                    <el-input  v-model="form.trialCate" autocomplete="off" class="el"></el-input>
+                </el-form-item>
+                <el-form-item  class="left" label="劳动合同" :label-width="formLabelWidth">
+                    <el-radio-group v-model="form.contract">
+                        <el-radio label="已签"></el-radio>
+                        <el-radio label="未签"></el-radio>
+                    </el-radio-group>
+                </el-form-item>
+                <el-form-item   class="right" label="试用期（月）" :label-width="formLabelWidth" >
+                    <el-input-number  v-model="form.trialNum" autocomplete="off"></el-input-number>
+                </el-form-item>
+                <el-form-item class="left" label="签订合同日期" :label-width="formLabelWidth">
+                    <el-col :span="20">
+                        <el-date-picker type="date" value-formart="yyyy-MM-dd" placeholder="选择日期" v-model="form.beginDate"  style="width: 100%;"></el-date-picker>
+                    </el-col>
+                </el-form-item>
+                <el-form-item class="right" label="合同结束日期" :label-width="formLabelWidth">
+                    <el-col :span="20">
+                        <el-date-picker type="date" value-formart="yyyy-MM-dd" placeholder="选择日期" v-model="form.endDate"  style="width: 100%;"></el-date-picker>
+                    </el-col>
+                </el-form-item>
+                <el-form-item  class="left" label="薪制" :label-width="formLabelWidth" >
+                    <el-input-number  v-model="form.salarySystem" autocomplete="off"></el-input-number>
+                </el-form-item>
+                <el-form-item  class="right" label="毕业学校" :label-width="formLabelWidth" >
+                    <el-input  v-model="form.graduation" autocomplete="off" class="el"></el-input>
+                </el-form-item>
+                <el-form-item class="left"  label="专业" :label-width="formLabelWidth" >
+                    <el-input  v-model="form.major" autocomplete="off" class="el"></el-input>
+                </el-form-item>
+                <el-form-item  class="left" label="用户图片" :label-width="formLabelWidth" >
+                    <el-upload
+                            class="upload-demo"
+                            action="/oss/file/upload"
+                            :on-preview="handlePreview"
+                            :on-remove="handleRemove"
+                            :before-remove="beforeRemove"
+                            multiple
+                            :limit="1"
+                            :on-exceed="handleExceed"
+                            :on-success="saveImgUrl"
+                            :file-list="fileList">
+                        <el-button size="small" type="primary">点击上传</el-button>
+                    </el-upload>
+                    <div>
+                        <img :src="img" style="width: 100px;height: 100px" alt="">
+                    </div>
+                </el-form-item>
+            </el-form>
+            <div slot="footer" class="dialog-footer">
+                <el-button @click="dialogFormVisibleAdd = false">取 消</el-button>
+                <el-button type="primary" @click="saveBtn('ruleForm')">确 定</el-button>
+            </div>
+        </el-dialog>
+
+        <el-table
+                :data="tableData"
+                border>
+            <el-table-column
+                    prop="date"
+                    label="序号">
+                <template slot-scope="scope">
+                    {{scope.$index+1}}
+                </template>
+            </el-table-column>
+            <el-table-column
+                    prop="id"
+                    label="用户编码">
+            </el-table-column>
+            <el-table-column
+                    prop="name"
+                    label="姓名">
+            </el-table-column>
+            <el-table-column
+                    prop="tel"
+                    label="电话">
+            </el-table-column>
+            <el-table-column
+                    prop="sex"
+                    label="性别">
+            </el-table-column>
+            <el-table-column
+                    prop="birthday"
+                    label="生日">
+            </el-table-column>
+            <el-table-column
+                    prop="natives"
+                    label="籍贯">
+            </el-table-column>
+            <el-table-column
+                    prop="nation"
+                    label="民族">
+            </el-table-column>
+            <el-table-column
+                    prop="education"
+                    label="学历">
+            </el-table-column>
+            <el-table-column
+                    fixed="right"
+                    label="操作"
+                    width="150">
+                <template slot-scope="scope">
+                    <el-button
+                            size="mini"
+                            @click="handleEdit(scope.row.id)">编辑</el-button>
+                    <el-button
+                            size="mini"
+                            type="danger"
+                            @click="handleDelete(scope.row.id)">删除</el-button>
+                </template>
+            </el-table-column>
+        </el-table>
+
+        <el-pagination
+                @size-change="handleSizeChange"
+                @current-change="handleCurrentChange"
+                :current-page="search.pageNumber"
+                :page-sizes="[5,10]"
+                :page-size="search.pageCount"
+                layout="total, sizes, prev, pager, next, jumper"
+                :total="total">
+        </el-pagination>
+    </div>
+</body>
+</html>
+<link rel="stylesheet" href="../../styles/css/font-awesome.min.css">
+<script src="../../styles/js/vue.js"></script>
+<script src="../../styles/js/element.js"></script>
+<script src="../../styles/js/axios.js"></script>
+<script src="../../styles/js/httpRequest.js"></script>
+<script>
+    new Vue({
+        el:"#app",
+        data:function (){
+            return{
+                form:{
+                    deptIdList:[]
+                },
+                tableData:[],
+                search:{
+                    pageNumber:1,
+                    pageCount:5
+                },
+                total:0,
+                controller:'emp',
+                img:'',
+                dialogFormVisible:false,
+                dialogFormVisibleAdd:false,
+                formLabelWidth:'120px',
+                multipleSelection: [],
+                roleList: [],
+                tableDataPro:[],
+                ruleForm: {},
+                rules: {
+                    deptIdList: [
+                        { required: true, message: '请选择部门', trigger: 'blur' },
+                    ],
+                    sid: [
+                        { required: true, message: '请选择工资类型', trigger: 'blur' },
+                    ],
+                    name: [
+                        { required: true, message: '请输入姓名', trigger: 'blur' },
+                    ],
+                    idCard: [
+                        { required: true, message: '请输入身份证号码', trigger: 'blur' },
+                    ],
+                    tel: [
+                        { required: true, message: '请输入电话', trigger: 'blur' },
+                    ],
+                    becomeDate: [
+                        { required: true, message: '请输入转正日期', trigger: 'blur' },
+                    ],
+                    trialSalary: [
+                        { required: true, message: '请输入试用期工资', trigger: 'blur' },
+                    ],
+                    becomeSalaty: [
+                        { required: true, message: '请输入转正后工资', trigger: 'blur' },
+                    ],
+                },
+                flag:true,
+                deptList:[],
+                salaryList:[]
+            }
+        },
+        methods:{
+            //列表查询
+            initList(){
+                axiosPostRequest(`/${this.controller}/findPage`,this.search).then(res=>{
+                    this.tableData=res.records
+                    this.total=res.total
+                })
+
+
+                axiosGetRequest("/dept/findAll").then(res=>{
+                    this.deptList=res
+                })
+
+                axiosGetRequest("/salary-cate/all").then(res=>{
+                    this.salaryList=res
+                })
+            },
+            handleSizeChange(val) {
+                this.search.pageCount=val;
+                this.initList();
+            },
+            handleCurrentChange(val) {
+                this.search.pageNumber=val;
+                this.initList();
+            },
+            //编辑
+            handleEdit(id){
+                this.flag=false;
+                this.dialogFormVisibleAdd=true;
+                axiosGetRequest(`/${this.controller}/findById/${id}`).then(res=>{
+                    this.form=res;
+                    this.img=this.form.img
+
+                    this.form.deptIdList.push(this.form.did)
+                    this.form.deptIdList.push(this.form.bid)
+                    console.log(this.form.deptIdList)
+                })
+                // this.form.deptIdList
+            },
+            //删除
+            handleDelete(id){
+                this.$confirm('此操作将永久删除该人员, 是否继续?', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning'
+                }).then(() => {
+                   axiosGetRequest(`/${this.controller}/deleteById/${id}`).then(res=>{
+                       if (res.code===20000){
+                           this.$message.success(res.message)
+                           this.initList();
+                       }else {
+                           this.$message.error(res.message)
+                       }
+                   })
+                }).catch(() => {
+                    this.$message({
+                        type: 'info',
+                        message: '已取消删除'
+                    });
+                });
+            },
+            //跳转到添加页
+            oppenAddDialog(){
+                this.flag=true;
+                this.form={};
+                this.dialogFormVisibleAdd=true;
+            },
+            //新增或修改
+            saveBtn(formName){
+                this.$refs[formName].validate((valid) => {
+                    if (valid) {
+                       if (this.flag){
+                           axiosPostRequest(`/${this.controller}/save`,this.form).then(res=>{
+                               this.dialogFormVisibleAdd=false;
+                               if (res.code===20000){
+                                   this.$message.success(res.message)
+                                   this.initList();
+                               }else {
+                                   this.$message.error(res.message)
+                               }
+                           })
+                       }else {
+                           axiosPostRequest(`/${this.controller}/update`,this.form).then(res=>{
+                               this.dialogFormVisibleAdd=false;
+                               if (res.code===20000){
+                                   this.$message.success(res.message)
+                                   this.initList();
+                               }else {
+                                   this.$message.error(res.message)
+                               }
+                           })
+                       }
+                    } else {
+                        return false;
+                    }
+                });
+            },
+            handleSelectionChange(val) {
+                this.multipleSelection = val;
+            },
+            //重置查询框
+            clearSearch(){
+                this.search={
+                    pageNumber:1,
+                    pageCount:5
+                }
+                this.initList();
+            },
+            //图片上传 start
+            handleRemove(file, fileList) {
+                this.img=''
+            },
+            handlePreview(file) {
+                console.log(123,file);
+            },
+            handleExceed(files, fileList) {
+                console.log(files)
+                console.log(fileList)
+                this.$message.warning(`当前限制选择 1 个文件，本次选择了 ${files.length} 个文件，共选择了 ${files.length + fileList.length} 个文件`);
+            },
+            beforeRemove(file, fileList) {
+                return this.$confirm(`确定移除 ${ file.name }？`);
+            },
+            saveImgUrl(response, file, fileList){
+                this.form.img=response.message
+                this.img=response.message
+            }
+            //图片上传 end
+        },
+        created(){
+            this.initList();
+        }
+    })
+</script>
+<style>
+    .el{
+        width: 250px;
+    }
+    .left{
+        margin-left: 100px;
+        display: inline-block;
+    }
+    .right{
+        float: right;
+        display: inline-block;
+        margin-right: 100px;
+    }
+    .rightmv{
+        margin-right: 50px;
+    }
+    .sex{
+        margin-right: 240px;
+    }
+    .right-input{
+        margin-right: 200px;
+    }
+    .right-img{
+        float: right;
+        display: inline-block;
+        margin-right: 100px;
+        width: 50px;
+        height: 50px;
+    }
+</style>
